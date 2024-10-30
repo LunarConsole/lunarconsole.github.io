@@ -6,15 +6,13 @@
     <title>Car Wash Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* CSS Styles */
-
+        /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #1a1a1a;
             color: #fff;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
             transition: background-color 0.5s, color 0.5s;
         }
 
@@ -28,23 +26,6 @@
             margin: 50px auto;
         }
 
-        .console {
-            border: 2px solid #1e1e1e;
-            background-color: #202020;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .console-header {
-            background-color: #1e1e1e;
-            color: #00ff00;
-            padding: 10px 20px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom: 2px solid #1e1e1e;
-        }
-
         nav ul {
             list-style-type: none;
             margin: 0;
@@ -54,13 +35,10 @@
             background-color: #202020;
             border-radius: 10px;
             padding: 10px 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         nav ul li {
             margin: 0 20px;
-            cursor: pointer;
-            position: relative;
         }
 
         nav ul li a {
@@ -78,11 +56,71 @@
             margin-top: 50px;
         }
 
-        .console-body {
-            padding: 20px;
+        /* Enhanced Contact Form Styling */
+        .contact-form {
+            background-color: #252525;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
         }
 
-        /* Contact form and confirmation modal */
+        .contact-form:hover {
+            transform: scale(1.02);
+        }
+
+        .contact-form h2 {
+            color: #00ff00;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #c0c0c0;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #333;
+            border: 1px solid #00ff00;
+            color: #fff;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: #00ff80;
+            box-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+        }
+
+        .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #00ff00;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Custom Confirmation Modal */
         #confirmation-modal {
             display: none;
             position: fixed;
@@ -90,28 +128,32 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #1e1e1e;
-            color: #000;
+            color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 9999;
+            width: 300px;
+            text-align: center;
         }
 
         #confirmation-modal p {
             margin-bottom: 10px;
         }
 
-        input[type="submit"] {
+        #confirmation-modal button {
             background-color: #00ff00;
             color: #000;
-            border: none;
             padding: 10px 20px;
-            cursor: pointer;
+            border: none;
             border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
-            background-color: #006400;
+        #confirmation-modal button:hover {
+            background-color: #00cc00;
         }
     </style>
 </head>
@@ -121,81 +163,36 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Pricing</a></li>
-            <li><a href="#">About Us</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <div class="console">
-            <div class="console-header">Welcome to Car Wash Solutions</div>
-            <div class="console-body">
-                <pre id="console-text"></pre>
-            </div>
-        </div>
+        <section class="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contact-form" action="https://formspree.io/f/mkgnjowe" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="button" onclick="showConfirmationModal()">Send</button>
+            </form>
+        </section>
     </div>
-
-    <section class="container">
-        <h2>Our Services</h2>
-        <div class="console">
-            <div class="console-body">
-                <pre>We provide a range of car wash services including exterior cleaning, interior detailing, and complete car polishing packages.</pre>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2>Pricing</h2>
-        <div class="console">
-            <div class="console-body">
-                <pre>Explore our affordable pricing options for one-time services or subscribe to our monthly packages for regular maintenance.</pre>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2>Contact Us</h2>
-        <div class="console">
-            <div class="console-body">
-                <form id="contact-form" action="https://formspree.io/f/mkgnjowe" method="POST">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                    <button type="button" onclick="showConfirmationModal()">Send</button>
-                </form>
-            </div>
-        </div>
-    </section>
 
     <div id="confirmation-modal">
         <p>Are you sure you want to send the message?</p>
-        <input type="text" id="confirmation-input" placeholder="Type Y to confirm or N to cancel">
-        <button onclick="confirmSend()">Send</button>
-        <button onclick="hideConfirmationModal()">Cancel</button>
+        <button onclick="confirmSend()">Yes</button>
+        <button onclick="hideConfirmationModal()">No</button>
     </div>
 
     <script>
-        // Rotating messages in the console
-        const consoleTextElement = document.getElementById('console-text');
-        const textArray = [
-            "Welcome to Car Wash Solutions!",
-            "Your car deserves the best care.",
-            "Explore our affordable car wash packages.",
-            "Eco-friendly and effective solutions."
-        ];
-        let index = 0;
-
-        function updateConsoleText() {
-            consoleTextElement.textContent = textArray[index];
-            index = (index + 1) % textArray.length;
-        }
-
-        setInterval(updateConsoleText, 10000);
-
-        // Modal functionality for confirming contact form submission
+        // Modal functionality for confirming form submission
         function showConfirmationModal() {
             document.getElementById('confirmation-modal').style.display = 'block';
         }
@@ -205,14 +202,7 @@
         }
 
         function confirmSend() {
-            var confirmationInput = document.getElementById('confirmation-input').value.trim().toLowerCase();
-            if (confirmationInput === 'y') {
-                document.getElementById('contact-form').submit();
-            } else if (confirmationInput === 'n') {
-                hideConfirmationModal();
-            } else {
-                alert('Please type Y to confirm or N to cancel.');
-            }
+            document.getElementById('contact-form').submit();
         }
     </script>
 </body>

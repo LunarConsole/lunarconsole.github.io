@@ -39,6 +39,7 @@
 
         nav ul li {
             margin: 0 20px;
+            position: relative;
         }
 
         nav ul li a {
@@ -52,8 +53,81 @@
             color: #00ff00;
         }
 
-        section {
-            margin-top: 50px;
+        nav ul li .sub-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            padding: 10px;
+            width: 150px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul li:hover .sub-menu {
+            display: block;
+        }
+
+        nav ul li .sub-menu li {
+            margin: 5px 0;
+        }
+
+        nav ul li .sub-menu li a {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        /* Console Section */
+        .console {
+            border: 2px solid #1e1e1e;
+            background-color: #202020;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .console-header {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 10px 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .console-body {
+            padding: 20px;
+            font-family: monospace;
+            color: #00ff00;
+        }
+
+        /* Skills Section */
+        .skill {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .skill-label {
+            margin-bottom: 5px;
+            color: #c0c0c0;
+        }
+
+        .skill-bar {
+            background-color: #00ff00;
+            height: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .skill-percent {
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
         }
 
         /* Enhanced Contact Form Styling */
@@ -160,14 +234,55 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Pricing</a></li>
+            <li>
+                <a href="#">Themes <i class="fas fa-angle-down"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="#" onclick="toggleDarkMode()">Dark Mode</a></li>
+                    <li><a href="#" onclick="toggleLightMode()">Light Mode</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Licensing</a></li>
+            <li><a href="#">Skills</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 
     <div class="container">
+        <div class="console">
+            <div class="console-header">Car Wash Solutions Console</div>
+            <div class="console-body">
+                <pre id="console-text">Welcome to Car Wash Solutions!</pre>
+            </div>
+        </div>
+
+        <section>
+            <h2>Skills</h2>
+            <div class="skill">
+                <label class="skill-label">HTML</label>
+                <div class="skill-bar" style="width: 80%;">
+                    <div class="skill-percent">80%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">CSS</label>
+                <div class="skill-bar" style="width: 70%;">
+                    <div class="skill-percent">70%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">JavaScript</label>
+                <div class="skill-bar" style="width: 85%;">
+                    <div class="skill-percent">85%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">Python</label>
+                <div class="skill-bar" style="width: 75%;">
+                    <div class="skill-percent">75%</div>
+                </div>
+            </div>
+        </section>
+
         <section class="contact-form">
             <h2>Contact Us</h2>
             <form id="contact-form" action="https://formspree.io/f/mkgnjowe" method="POST">
@@ -203,6 +318,15 @@
 
         function confirmSend() {
             document.getElementById('contact-form').submit();
+        }
+
+        // Theme toggle functions
+        function toggleDarkMode() {
+            document.body.classList.remove('light-mode');
+        }
+
+        function toggleLightMode() {
+            document.body.classList.add('light-mode');
         }
     </script>
 </body>
